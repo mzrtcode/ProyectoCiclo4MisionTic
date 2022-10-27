@@ -1,1 +1,1 @@
-export * from './mongobd.datasource';
+export * from './mongodb.datasource';
