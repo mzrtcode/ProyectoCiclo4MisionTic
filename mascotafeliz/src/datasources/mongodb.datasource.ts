@@ -2,7 +2,7 @@ import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
 const config = {
-  name: 'Mongodb',
+  name: 'mongodb',
   connector: 'mongodb',
   url: '',
   host: '',
@@ -20,11 +20,11 @@ const config = {
 @lifeCycleObserver('datasource')
 export class MongodbDataSource extends juggler.DataSource
   implements LifeCycleObserver {
-  static dataSourceName = 'Mongodb';
+  static dataSourceName = 'mongodb';
   static readonly defaultConfig = config;
 
   constructor(
-    @inject('datasources.config.Mongodb', {optional: true})
+    @inject('datasources.config.mongodb', {optional: true})
     dsConfig: object = config,
   ) {
     super(dsConfig);
