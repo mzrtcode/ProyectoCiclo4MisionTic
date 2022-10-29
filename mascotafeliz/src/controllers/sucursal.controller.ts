@@ -26,7 +26,7 @@ export class SucursalController {
     public sucursalRepository : SucursalRepository,
   ) {}
 
-  @post('/sucursals')
+  @post('/sucursales')
   @response(200, {
     description: 'Sucursal model instance',
     content: {'application/json': {schema: getModelSchemaRef(Sucursal)}},
@@ -47,7 +47,7 @@ export class SucursalController {
     return this.sucursalRepository.create(sucursal);
   }
 
-  @get('/sucursals/count')
+  @get('/sucursales/count')
   @response(200, {
     description: 'Sucursal model count',
     content: {'application/json': {schema: CountSchema}},
@@ -58,7 +58,7 @@ export class SucursalController {
     return this.sucursalRepository.count(where);
   }
 
-  @get('/sucursals')
+  @get('/sucursales')
   @response(200, {
     description: 'Array of Sucursal model instances',
     content: {
@@ -76,7 +76,7 @@ export class SucursalController {
     return this.sucursalRepository.find(filter);
   }
 
-  @patch('/sucursals')
+  @patch('/sucursales')
   @response(200, {
     description: 'Sucursal PATCH success count',
     content: {'application/json': {schema: CountSchema}},
@@ -95,7 +95,7 @@ export class SucursalController {
     return this.sucursalRepository.updateAll(sucursal, where);
   }
 
-  @get('/sucursals/{id}')
+  @get('/sucursales/{id}')
   @response(200, {
     description: 'Sucursal model instance',
     content: {
@@ -111,7 +111,7 @@ export class SucursalController {
     return this.sucursalRepository.findById(id, filter);
   }
 
-  @patch('/sucursals/{id}')
+  @patch('/sucursales/{id}')
   @response(204, {
     description: 'Sucursal PATCH success',
   })
@@ -129,7 +129,7 @@ export class SucursalController {
     await this.sucursalRepository.updateById(id, sucursal);
   }
 
-  @put('/sucursals/{id}')
+  @put('/sucursales/{id}')
   @response(204, {
     description: 'Sucursal PUT success',
   })
@@ -140,7 +140,7 @@ export class SucursalController {
     await this.sucursalRepository.replaceById(id, sucursal);
   }
 
-  @del('/sucursals/{id}')
+  @del('/sucursales/{id}')
   @response(204, {
     description: 'Sucursal DELETE success',
   })

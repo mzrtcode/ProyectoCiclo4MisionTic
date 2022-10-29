@@ -1,5 +1,7 @@
-export * from './sucursal.model';
-export * from './productosy-servicios.model';
-export * from './usuarios.model';
+export * from './mascota.model';
+export * from './plan.model';
 export * from './prospecto.model';
-export * from './plan.model';export * from './mascota.model';
+export * from './sucursal.model';
+export * from './usuarios.model';
+
+export * from './producto-servicio.model';

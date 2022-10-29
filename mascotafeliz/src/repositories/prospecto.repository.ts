@@ -9,7 +9,7 @@ export class ProspectoRepository extends DefaultCrudRepository<
   ProspectoRelations
 > {
   constructor(
-    @inject('datasources.mongobd') dataSource: MongodbDataSource,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource,
   ) {
     super(Prospecto, dataSource);
   }

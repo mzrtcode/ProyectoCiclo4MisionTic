@@ -26,7 +26,7 @@ export class PlanController {
     public planRepository : PlanRepository,
   ) {}
 
-  @post('/plan')
+  @post('/planes')
   @response(200, {
     description: 'Plan model instance',
     content: {'application/json': {schema: getModelSchemaRef(Plan)}},
@@ -47,7 +47,7 @@ export class PlanController {
     return this.planRepository.create(plan);
   }
 
-  @get('/plan/count')
+  @get('/planes/count')
   @response(200, {
     description: 'Plan model count',
     content: {'application/json': {schema: CountSchema}},
@@ -58,7 +58,7 @@ export class PlanController {
     return this.planRepository.count(where);
   }
 
-  @get('/plan')
+  @get('/planes')
   @response(200, {
     description: 'Array of Plan model instances',
     content: {
@@ -76,7 +76,7 @@ export class PlanController {
     return this.planRepository.find(filter);
   }
 
-  @patch('/plan')
+  @patch('/planes')
   @response(200, {
     description: 'Plan PATCH success count',
     content: {'application/json': {schema: CountSchema}},
@@ -95,7 +95,7 @@ export class PlanController {
     return this.planRepository.updateAll(plan, where);
   }
 
-  @get('/plan/{id}')
+  @get('/planes/{id}')
   @response(200, {
     description: 'Plan model instance',
     content: {
@@ -111,7 +111,7 @@ export class PlanController {
     return this.planRepository.findById(id, filter);
   }
 
-  @patch('/plan/{id}')
+  @patch('/planes/{id}')
   @response(204, {
     description: 'Plan PATCH success',
   })
@@ -129,7 +129,7 @@ export class PlanController {
     await this.planRepository.updateById(id, plan);
   }
 
-  @put('/plan/{id}')
+  @put('/planes/{id}')
   @response(204, {
     description: 'Plan PUT success',
   })
@@ -140,7 +140,7 @@ export class PlanController {
     await this.planRepository.replaceById(id, plan);
   }
 
-  @del('/plan/{id}')
+  @del('/planes/{id}')
   @response(204, {
     description: 'Plan DELETE success',
   })
