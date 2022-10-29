@@ -13,19 +13,19 @@ export class Sucursal extends Entity {
     type: 'string',
     required: true,
   })
-  Departamento: string;
+  departamento: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Ciudad: string;
+  ciudad: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Direccion: string;
+  direccion: string;
 
 
   constructor(data?: Partial<Sucursal>) {

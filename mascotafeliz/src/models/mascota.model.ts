@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Usuarios} from './usuarios.model';
+import {Plan} from './plan.model';
 
 @model()
 export class Mascota extends Entity {
@@ -13,26 +15,31 @@ export class Mascota extends Entity {
     type: 'string',
     required: true,
   })
-  Nombre: string;
+  nombre: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Foto: string;
+  foto: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Especie: string;
+  especie: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  EstadoAfiliacion: string;
+  estadoAfiliacion: string;
 
+  @belongsTo(() => Usuarios)
+  usuariosId: string;
+
+  @belongsTo(() => Plan)
+  planId: string;
 
   constructor(data?: Partial<Mascota>) {
     super(data);

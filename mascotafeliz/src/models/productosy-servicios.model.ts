@@ -13,25 +13,25 @@ export class ProductosyServicios extends Entity {
     type: 'string',
     required: true,
   })
-  Tipo: string;
+  tipo: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  Precio: number;
+  precio: number;
 
   @property({
     type: 'string',
     required: true,
   })
-  Descripcion: string;
+  descripcion: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Proveedor: string;
+  proveedor: string;
 
 
   constructor(data?: Partial<ProductosyServicios>) {

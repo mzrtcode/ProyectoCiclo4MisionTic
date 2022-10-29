@@ -13,25 +13,32 @@ export class Prospecto extends Entity {
     type: 'string',
     required: true,
   })
-  Nombre: string;
+  nombre: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Correo: string;
+  apellido: string;
+
 
   @property({
     type: 'string',
     required: true,
   })
-  Telefono: string;
+  correo: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Comentario: string;
+  telefono: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  comentario: string;
 
 
   constructor(data?: Partial<Prospecto>) {
