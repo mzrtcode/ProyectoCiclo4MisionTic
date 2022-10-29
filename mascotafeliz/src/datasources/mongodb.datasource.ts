@@ -2,9 +2,9 @@ import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
 const config = {
-  name: 'MongoDB',
+  name: 'mongobd',
   connector: 'mongodb',
-  url: '',
+  url: 'mongodb+srv://adminuserzzz123:SOeUSz6NWCFAZx82@cluster0.1docmm9.mongodb.net/?retryWrites=true&w=majority',
   host: '',
   port: 0,
   user: '',
@@ -18,13 +18,13 @@ const config = {
 // gracefully. The `stop()` method is inherited from `juggler.DataSource`.
 // Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
-export class MongoDbDataSource extends juggler.DataSource
+export class MongodbDataSource extends juggler.DataSource
   implements LifeCycleObserver {
-  static dataSourceName = 'MongoDB';
+  static dataSourceName = 'mongobd';
   static readonly defaultConfig = config;
 
   constructor(
-    @inject('datasources.config.MongoDB', {optional: true})
+    @inject('datasources.config.mongobd', {optional: true})
     dsConfig: object = config,
   ) {
     super(dsConfig);
