@@ -59,7 +59,7 @@ export class UsuarioController {
      let asunto = 'Registro en la plataforma';
      let contenido = `Hola ${usuarios.nombre},su nombre de usuario es: ${usuarios.correo} y su contraseña es: ${clave}`;
 
-     fetch(`http://127.0.0.1:5000/correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
+     fetch(`http://127.0.0.1:5000/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
      .then((data:any)=>{
        console.log(data);
      })
