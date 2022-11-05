@@ -1,3 +1,4 @@
+import { authenticate } from '@loopback/authentication';
 import { service } from '@loopback/core';
 import {
   Count,
@@ -17,12 +18,15 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Usuarios} from '../models';
+import { Llaves } from '../config/Llaves';
+import {Credenciales, Usuarios} from '../models';
 import {UsuariosRepository} from '../repositories';
 import { AutenticacionService } from '../services';
 const fetch = require('node-fetch');
 
+@authenticate('admin')
 export class UsuarioController {
   constructor(
     @repository(UsuariosRepository)
@@ -31,6 +35,32 @@ export class UsuarioController {
     public servicioAtenticacion : AutenticacionService
   ) {}
 
+  @post('/identificarUsuarios',{
+    responses:{
+      '200':{
+        description:"identificacion de usuarios"
+      }
+    }
+  })
+  async identificarUsuarios(
+    @requestBody() credenciales:Credenciales
+     
+  ){
+    let p= await this.servicioAtenticacion.IdentificarUsuario(credenciales.usuario,credenciales.clave);
+    if(p){
+       let token = this.servicioAtenticacion.GenerarTokenJWT(p);
+       return {
+        datos:{
+          nombre:p.nombre,
+          correo:p.correo,
+          id:p.id
+        },
+        tk:token
+       }
+    }else{
+      throw new HttpErrors[401]("Datos invalidos");
+    }
+     }
   @post('/usuarios')
   @response(200, {
     description: 'Usuarios model instance',
@@ -59,13 +89,13 @@ export class UsuarioController {
      let asunto = 'Registro en la plataforma';
      let contenido = `Hola ${usuarios.nombre},su nombre de usuario es: ${usuarios.correo} y su contraseña es: ${clave}`;
 
-     fetch(`http://127.0.0.1:5000/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
+     fetch(`${Llaves.urlServicioNotificaciones}/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
      .then((data:any)=>{
        console.log(data);
      })
      return p;
   }
-
+  @authenticate.skip() 
   @get('/usuarios/count')
   @response(200, {
     description: 'Usuarios model count',
