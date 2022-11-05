@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'mongodb',
   connector: 'mongodb',
-  url: 'AQUI VA TU CADENA DE MONGO',
+  url: 'AQUI VA TU CADENA MONGO',
   host: '',
   port: 0,
   user: '',
