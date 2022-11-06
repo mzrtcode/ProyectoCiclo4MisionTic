@@ -29,7 +29,7 @@ export class AutenticacionService {
 
   IdentificarUsuario(usuario:string,clave:string){
      try{
-        let p = this.usuarioRepository.findOne({where:{correo:usuario,clave:clave}})
+        let p = this.usuarioRepository.findOne({where:{correo:usuario,clave:clave}});
         if(p){
           return p;
         }
@@ -38,13 +38,13 @@ export class AutenticacionService {
         return false;
      }
   }
-  //El error puede estar aqui
-  GenerarTokenJWT(Usuarios:Usuarios){
+  //TokenJWT
+  GenerarTokenJWT(usuarios:Usuarios){
       let token = jwt.sign({
         date:{
-          id:Usuarios.id,
-          correo:Usuarios.correo,
-          nombre:Usuarios.nombre + "" + Usuarios.apellido
+          id:usuarios.id,
+          correo:usuarios.correo,
+          nombre:usuarios.nombre + "" + usuarios.apellido
         }
 
       },

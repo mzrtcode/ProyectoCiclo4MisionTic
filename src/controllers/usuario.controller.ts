@@ -35,6 +35,7 @@ export class UsuarioController {
     public servicioAtenticacion : AutenticacionService
   ) {}
 
+  //-------------------------------------------------------
   @post('/identificarUsuarios',{
     responses:{
       '200':{
