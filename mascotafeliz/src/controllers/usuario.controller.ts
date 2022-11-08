@@ -1,3 +1,5 @@
+import { service } from '@loopback/core';
+const fetch = require ('node-fetch-h2');
 import {
   Count,
   CountSchema,
@@ -19,11 +21,16 @@ import {
 } from '@loopback/rest';
 import {Usuarios} from '../models';
 import {UsuariosRepository} from '../repositories';
+import { AutenticacionService } from '../services';
 
 export class UsuarioController {
   constructor(
     @repository(UsuariosRepository)
     public usuariosRepository : UsuariosRepository,
+
+    //añadimos serficio de autenticacion
+    @service(AutenticacionService)
+    public servicioAutenticacion :  AutenticacionService
   ) {}
 
   @post('/usuarios')
@@ -44,7 +51,24 @@ export class UsuarioController {
     })
     usuarios: Omit<Usuarios, 'id'>,
   ): Promise<Usuarios> {
-    return this.usuariosRepository.create(usuarios);
+    //Creamos clave
+    let clave = await this.servicioAutenticacion.generarClave();
+    //Ciframos clave
+    let claveCifrada = this.servicioAutenticacion.cifrarClave(clave);
+    //le asignamos la clave cifrada al nuevo usuario
+    usuarios.clave = claveCifrada;
+
+    let u = await this.usuariosRepository.create(usuarios);
+
+    //notificamos al usuario
+    let destino = usuarios.correo;
+    let asunto = 'Registro en la plataforma';
+    let contenido = `Hola ${usuarios.nombre}, su usuario es ${usuarios.correo} y su contraseña es ${clave}`;
+    fetch (`http://127.0.0.1:5000/correo?correo_en_postman=${destino}&asunto_en_postman=${asunto}&cuerpo_mensaje_postman=${contenido}`)
+    .then((data:any)=>{
+      console.log(data);
+    })
+    return u;
   }
 
   @get('/usuarios/count')
