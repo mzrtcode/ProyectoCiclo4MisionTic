@@ -1,0 +1,165 @@
+.text-mascota {
+  color: black !important;
+}
+/*Boton mascota*/
+.btn-mascota {
+  background-color: #97c93e;
+  color: white;
+}
+
+.btn-mascota:hover {
+  background-color: #82ad36;
+}
+
+/*Color texto conoce nuestros servicio.*/
+.Color{
+  color: #82ad36;
+}
+/*Icon WhatsApp*/
+.IconWhatsApp{
+  position:fixed;
+  right: 5px;
+  bottom: 5px;
+  z-index: 1;
+}
+
+#header img {
+  width: 80px;
+}
+
+#main .carousel-inner img {
+  max-height: 70vh;
+  object-fit: cover;
+  filter: grayscale(70%);
+}
+
+#carousel {
+  position: relative;
+}
+
+#carousel .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+#carousel .overlay .container,
+#carousel .overlay .row {
+  height: 100%;
+  margin-left: -15%;
+  font-size: 25px;
+}
+
+#place-time {
+  background-color: #343a40;
+  color: white;
+}
+
+#place-time img {
+  max-width: 100%;
+}
+
+#footer {
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(25,25,25,1) 100%);
+}
+
+#footer a {
+  color: white;
+}
+
+
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --very-ligth-pink: #C7C7C7;
+  --text-input-field: #F7F7F7;
+  --hospital-green: #ACD9B2;
+  --sm: 14px;
+  --md: 16px;
+  --lg: 18px;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+}
+nav{
+  display: flex;       
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--very-ligth-pink);
+}
+.menu{
+  display: none;
+}
+.logo{
+  width: 50px;
+}
+.navbar-left ul, .navbar-rigth ul{
+  list-style: none;
+  padding: 0;
+  margin:0px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+a{
+  color:#82ad36;
+  font-size: 20px;
+}
+.navbar-left{
+  display: flex;
+  
+}
+.navbar-left ul{
+  margin-left: 12px;  
+}
+.navbar-left ul li a, .navbar-rigth ul li a {
+  text-decoration: none;
+  color : var(--very-ligth-pink);
+  border: 1px solid var(--white);
+  padding: 10px;
+  border-radius: 8px;
+}
+.navbar-left ul li a:hover, .navbar-rigth ul li a:hover {
+  text-decoration: none;
+  color : var(--hospital-green);
+  border: 1px solid var(--hospital-green);
+}
+.navbar-email{
+  color:var(--very-ligth-pink);
+  font-size: var(--sm);
+  margin-right: 12px;
+}
+.navbar-shopping{
+  position: relative;
+}
+.navbar-shopping div{
+  width: 16px;
+  height: 16px;
+  background-color: var(--hospital-green);
+  border-radius: 50%;
+  font-size: var(--sm);
+  font-weight: bold;
+  position: absolute;
+  top:-6px;
+  right: -3px;
+  display: flex;
+  justify-content: center;
+}
+@media(max-width:640px){
+  .menu{
+      display: block;
+  }
+  .navbar-left ul{
+      display: none;
+  }
+  .navbar-email{
+      display: none;
+  }
+}
