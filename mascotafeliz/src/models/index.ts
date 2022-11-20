@@ -5,3 +5,4 @@ export * from './sucursal.model';
 export * from './usuarios.model';
 
 export * from './producto-servicio.model';
+export * from './credenciales.model';

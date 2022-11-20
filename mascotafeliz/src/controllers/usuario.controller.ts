@@ -1,37 +1,61 @@
-import { service } from '@loopback/core';
-const fetch = require ('node-fetch-h2');
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, HttpErrors, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
-import {Usuarios} from '../models';
+import {Credenciales, Usuarios} from '../models';
 import {UsuariosRepository} from '../repositories';
-import { AutenticacionService } from '../services';
+import {AutenticacionService} from '../services';
+const fetch = require('node-fetch-h2');
 
 export class UsuarioController {
   constructor(
+
+
     @repository(UsuariosRepository)
-    public usuariosRepository : UsuariosRepository,
+    public usuariosRepository: UsuariosRepository,
 
     //añadimos serficio de autenticacion
     @service(AutenticacionService)
-    public servicioAutenticacion :  AutenticacionService
-  ) {}
+    public servicioAutenticacion: AutenticacionService
+
+
+
+  ) { }
+  @post('/identificarUsuario', {
+    responses: {
+      '200': {
+        description: 'Identificacion de usuarios'
+      }
+    }
+  })
+  async indetificarUsuario(
+    @requestBody() credenciales: Credenciales
+  ) {
+    let user = await this.servicioAutenticacion.IdentificarUsuario(credenciales.usuario, credenciales.clave);
+    if (user) {
+      let token = this.servicioAutenticacion.GenerarTokenJWT(user);
+      return {
+        datos: {
+          nombre: user.nombre,
+          correo: user.correo,
+          id: user.id
+        },
+        tk: token
+      }
+    } else {
+      throw new HttpErrors[401]('Datos invalidos')
+    }
+  }
 
   @post('/usuarios')
   @response(200, {
@@ -64,10 +88,10 @@ export class UsuarioController {
     let destino = usuarios.correo;
     let asunto = 'Registro en la plataforma';
     let contenido = `Hola ${usuarios.nombre}, su usuario es ${usuarios.correo} y su contraseña es ${clave}`;
-    fetch (`http://127.0.0.1:5000/correo?correo_en_postman=${destino}&asunto_en_postman=${asunto}&cuerpo_mensaje_postman=${contenido}`)
-    .then((data:any)=>{
-      console.log(data);
-    })
+    fetch(`http://127.0.0.1:5000/email?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
+      .then((data: any) => {
+        console.log(data);
+      })
     return u;
   }
 

@@ -14,7 +14,7 @@ import {EstrategiaAdministrador} from './strategies/admin.strategy';
 
 export {ApplicationConfig};
 
-export class App extends BootMixin(
+export class MascotafelizApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
   constructor(options: ApplicationConfig = {}) {
