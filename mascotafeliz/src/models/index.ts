@@ -6,3 +6,4 @@ export * from './usuarios.model';
 
 export * from './producto-servicio.model';
 export * from './credenciales.model';
+export * from './foto-mascota.model';

@@ -5,3 +5,4 @@ export * from './sucursal.repository';
 export * from './usuarios.repository';
 
 export * from './producto-servicio.repository';
+export * from './foto-mascota.repository';

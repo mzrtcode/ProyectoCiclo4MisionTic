@@ -5,3 +5,4 @@ export * from './sucursal.controller';
 export * from './usuario.controller';
 
 export * from './producto-servicio.controller';
+export * from './cargar-archivos.controller';
