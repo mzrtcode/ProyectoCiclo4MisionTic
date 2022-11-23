@@ -40,6 +40,12 @@ export class Prospecto extends Entity {
   })
   comentario: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  estado: string;
+
 
   constructor(data?: Partial<Prospecto>) {
     super(data);

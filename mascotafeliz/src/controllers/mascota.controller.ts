@@ -4,33 +4,30 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {Mascota} from '../models';
 import {MascotaRepository} from '../repositories';
 
 export class MascotaController {
+  fotoRepository: any;
   constructor(
     @repository(MascotaRepository)
-    public mascotaRepository : MascotaRepository,
-  ) {}
+    public mascotaRepository: MascotaRepository,
+  ) { }
 
   @post('/mascotas')
   @response(200, {
     description: 'Mascota model instance',
     content: {'application/json': {schema: getModelSchemaRef(Mascota)}},
   })
+
+
   async create(
     @requestBody({
       content: {
@@ -46,6 +43,7 @@ export class MascotaController {
   ): Promise<Mascota> {
     return this.mascotaRepository.create(mascota);
   }
+
 
   @get('/mascotas/count')
   @response(200, {

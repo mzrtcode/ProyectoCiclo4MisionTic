@@ -46,9 +46,11 @@ export class UsuarioController {
       let token = this.servicioAutenticacion.GenerarTokenJWT(user);
       return {
         datos: {
+          id: user.id,
           nombre: user.nombre,
+          apellido: user.apellido,
           correo: user.correo,
-          id: user.id
+          rol: user.rol
         },
         tk: token
       }
@@ -56,6 +58,54 @@ export class UsuarioController {
       throw new HttpErrors[401]('Datos invalidos')
     }
   }
+
+
+
+
+
+
+
+  /*
+    @post('/cambiar-clave', {
+      responses: {
+        '200': {
+          description: 'Cambio de clave de usuario'
+        }
+      }
+    })
+    async cambiarClaveUsuario(
+      @requestBody() credenciales: Credenciales
+    ) {
+      let user = await this.servicioAutenticacion.IdentificarUsuario(credenciales.usuario, credenciales.clave);
+      if (user) {
+        let token = this.servicioAutenticacion.GenerarTokenJWT(user);
+        return {
+          datos: {
+            id: user.id,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            correo: user.correo,
+            rol: user.rol
+          },
+          tk: token
+        }
+      } else {
+        throw new HttpErrors[401]('Datos invalidos')
+      }
+    }
+   */
+
+
+
+
+
+
+
+
+
+
+
+
 
   @post('/usuarios')
   @response(200, {
@@ -196,3 +246,6 @@ export class UsuarioController {
     await this.usuariosRepository.deleteById(id);
   }
 }
+
+
+
